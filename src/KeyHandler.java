@@ -38,6 +38,7 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
 
+        // Movement (WASD + Arrow Keys)
         if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             upPressed = true;
         }
@@ -50,18 +51,26 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
             rightPressed = true;
         }
-        if (code == KeyEvent.VK_ENTER) {
+        
+        // Actions
+        // Enter / Select / Pause (Start Button)
+        if (code == KeyEvent.VK_ENTER || code == KeyEvent.VK_P) {
             enterPressed = true;
         }
-        if (code == KeyEvent.VK_ESCAPE) {
+        // Escape / Back (Back Button)
+        if (code == KeyEvent.VK_ESCAPE || code == KeyEvent.VK_BACK_SPACE) {
             escPressed = true;
         }
-        if (code == KeyEvent.VK_SPACE) {
+        // Attack (A Button / X Button)
+        if (code == KeyEvent.VK_SPACE || code == KeyEvent.VK_Z || code == KeyEvent.VK_J) {
             spacePressed = true;
         }
-        if (code == KeyEvent.VK_SHIFT) {
+        // Dash (B Button / O Button / Shoulder Buttons)
+        if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_X || code == KeyEvent.VK_K) {
             shiftPressed = true;
         }
+        
+        // Specific Text Input
         if (code == KeyEvent.VK_BACK_SPACE) {
             backspacePressed = true;
         }
@@ -89,16 +98,16 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
             rightPressed = false;
         }
-        if (code == KeyEvent.VK_ENTER) {
+        if (code == KeyEvent.VK_ENTER || code == KeyEvent.VK_P) {
             enterPressed = false;
         }
-        if (code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_ESCAPE || code == KeyEvent.VK_BACK_SPACE) {
             escPressed = false;
         }
-        if (code == KeyEvent.VK_SPACE) {
+        if (code == KeyEvent.VK_SPACE || code == KeyEvent.VK_Z || code == KeyEvent.VK_J) {
             spacePressed = false;
         }
-        if (code == KeyEvent.VK_SHIFT) {
+        if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_X || code == KeyEvent.VK_K) {
             shiftPressed = false;
         }
         if (code == KeyEvent.VK_BACK_SPACE) {

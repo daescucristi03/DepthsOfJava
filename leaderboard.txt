@@ -1,5 +1,8 @@
+bobitza:17410
+boncala:9180
 bobby:6060
 bob:5050
 Ali Baba:5030
+test:5010
 scooby doo:4940
 joe:1060

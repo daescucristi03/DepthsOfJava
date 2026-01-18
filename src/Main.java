@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * The Main class serves as the entry point for the application.
@@ -11,33 +12,36 @@ public class Main {
      * @param args Command line arguments (not used).
      */
     public static void main(String[] args) {
-        // Create the main application window
-        JFrame window = new JFrame();
-        
-        // Ensure the application closes when the window is closed
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        // Allow the window to be resized by the user
-        window.setResizable(true);
-        
-        // Set the title of the window
-        window.setTitle("Depths of Java");
+        // Ensure the GUI is created on the Event Dispatch Thread
+        SwingUtilities.invokeLater(() -> {
+            // Create the main application window
+            JFrame window = new JFrame();
 
-        // Create the game panel which contains the game logic and rendering
-        GamePanel gamePanel = new GamePanel();
-        window.add(gamePanel);
+            // Ensure the application closes when the window is closed
+            window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Size the window to fit the preferred size of its subcomponents (GamePanel)
-        window.pack();
+            // Allow the window to be resized by the user
+            window.setResizable(true);
 
-        // Center the window on the screen
-        window.setLocationRelativeTo(null);
-        
-        // Make the window visible
-        window.setVisible(true);
+            // Set the title of the window
+            window.setTitle("Depths of Java");
 
-        // Initialize game state and start the game loop
-        gamePanel.setupGame();
-        gamePanel.startGameThread();
+            // Create the game panel which contains the game logic and rendering
+            GamePanel gamePanel = new GamePanel();
+            window.add(gamePanel);
+
+            // Size the window to fit the preferred size of its subcomponents (GamePanel)
+            window.pack();
+
+            // Center the window on the screen
+            window.setLocationRelativeTo(null);
+
+            // Make the window visible
+            window.setVisible(true);
+
+            // Initialize game state and start the game loop
+            gamePanel.setupGame();
+            gamePanel.startGameThread();
+        });
     }
 }

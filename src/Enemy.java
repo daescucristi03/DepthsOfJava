@@ -343,17 +343,16 @@ public class Enemy extends Entity {
     
     public void takeDamage(int damage) {
         hp -= damage;
+        
+        // Spawn Damage Number
+        gp.damageNumbers.add(new DamageNumber(x + gp.tileSize/2, y, damage));
+
         if (hp <= 0) {
             hp = 0;
             alive = false;
             
             if (isBoss) {
-                gp.bossActive = false;
-                gp.score += 1000; // Big bonus
-                // Reactivate spawners
-                for (EnemySpawner s : gp.spawners) {
-                    s.active = true;
-                }
+                gp.bossDefeated();
             }
         }
     }
@@ -370,9 +369,7 @@ public class Enemy extends Entity {
                 screenY + gp.tileSize > 0 && screenY < gp.screenHeight) {
                 g2.setColor(new Color(0, 0, 0, 100));
                 g2.fillOval(screenX, screenY, gp.tileSize, gp.tileSize);
-                
-                // Draw boss high above (off screen or just scaled up?)
-                // Let's just not draw the boss body, implying it's high up
+
             }
             return;
         }
@@ -405,7 +402,6 @@ public class Enemy extends Entity {
                 g2.setStroke(new BasicStroke(3));
                 g2.drawPolygon(xPoints, yPoints, 6);
                 g2.setStroke(new BasicStroke(1));
-                
             } else if (ranged) {
                 g2.setColor(new Color(200, 50, 50)); // Reddish
                 // Triangle shape for ranged
